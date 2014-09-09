@@ -3,13 +3,15 @@ class Idea
   attr_reader :title,
               :description,
               :rank,
-              :id
+              :id,
+              :tags
 
   def initialize(attributes)
     @title       = attributes["title"]
     @description = attributes["description"]
     @rank        = attributes["rank"] || 0
     @id          = attributes["id"]
+    @tags        = attributes["tags"] || 0
   end
 
   def save
@@ -20,7 +22,8 @@ class Idea
     {
       "title" => title,
       "description" => description,
-      "rank" => rank
+      "rank" => rank,
+      "tags" => tags
     }
   end
 
@@ -30,6 +33,11 @@ class Idea
 
   def <=>(other)
     other.rank <=> rank
+  end
+
+  def clean_tags(idea_tags)
+    idea_tags['tags'] =
+      (idea_tags['tags'] || "").split(", ")
   end
 
 end

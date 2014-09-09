@@ -4,3 +4,9 @@ ideas:
   description: test123
 - title: another one
   description: boats
+- title: Beers
+  tags: colorado, avery
+  description: when is it happy hour yo
+- title: hello
+  tags: hi, sup
+  description: a

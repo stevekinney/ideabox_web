@@ -55,4 +55,8 @@ class IdeaStore
     end
   end
 
+  def self.find_by_tag(tag)
+    all.find_all {|idea| idea.tags.include?(tag)}
+  end
+
 end

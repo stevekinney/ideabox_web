@@ -39,4 +39,13 @@ class IdeaBoxApp < Sinatra::Base
     redirect '/'
   end
 
+  get '/:tag' do |tag|
+    ideas = IdeaStore.find_by_tag(tag)
+    idea.tag
+    IdeaStore.update(id.to_i, idea.to_h)
+    redirect '/'
+  end
+
+
+
 end
