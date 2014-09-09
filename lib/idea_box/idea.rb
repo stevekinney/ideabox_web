@@ -21,4 +21,8 @@ class Idea
     }
   end
 
+  def like!
+    @rank += 1
+  end
+
 end
