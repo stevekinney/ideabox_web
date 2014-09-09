@@ -2,15 +2,20 @@ require 'yaml/store'
 
 class IdeaStore
 
-  def self.create(attributes)
+  def self.create(data)
     database.transaction do
-      database['ideas'] ||= []
-      database['ideas'] << attributes
+      database['ideas'] << data
     end
   end
 
   def self.database
-    @database ||= YAML::Store.new('db/ideabox')
+    return @database if @database
+
+    @database = YAML::Store.new('db/ideabox')
+    @database.transaction do
+      @database['ideas'] ||= []
+    end
+    @database
   end
 
   def self.all
