@@ -5,7 +5,7 @@ class IdeaBoxApp < Sinatra::Base
   set :root, 'lib/app'
 
   get '/' do
-    erb :index, locals: {ideas: IdeaStore.all, idea: Idea.new(params)}
+    erb :index, locals: {ideas: IdeaStore.all.sort, idea: Idea.new(params)}
   end
 
   not_found do
@@ -24,7 +24,7 @@ class IdeaBoxApp < Sinatra::Base
 
   get '/:id/edit' do |id|
     idea = IdeaStore.find(id.to_i)
-    erb :edit, locals: {id: id, idea: idea}
+    erb :edit, locals: {idea: idea}
   end
 
   put '/:id' do |id|
