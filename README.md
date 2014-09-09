@@ -1,5 +1,5 @@
-First official Sinatra application for Turing.
-######
+First official Sinatra application for Turing
+############################################
 Learning Goals:
 + lay out a Sinatra application
 + define routes/endpoints for that application
