@@ -21,8 +21,11 @@ GEM
     i18n (0.6.11)
     json (1.8.1)
     mime-types (2.3)
+    mini_portile (0.6.0)
     minitest (5.4.1)
     multi_json (1.10.1)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
     paperclip (4.2.0)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -57,6 +60,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
+  nokogiri
   paperclip (~> 4.2)
   shotgun
   sinatra
