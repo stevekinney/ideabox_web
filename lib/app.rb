@@ -3,6 +3,7 @@ require 'idea_box'
 class IdeaBoxApp < Sinatra::Base
   set :method_override, true
   set :root, 'lib/app'
+  set :public_folder, 'public/assets'
 
   get '/' do
     erb :index, locals: {ideas: IdeaStore.all.sort, idea: Idea.new(params)}
@@ -45,7 +46,5 @@ class IdeaBoxApp < Sinatra::Base
     IdeaStore.update(id.to_i, idea.to_h)
     redirect '/'
   end
-
-
 
 end
