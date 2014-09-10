@@ -21,6 +21,4 @@ describe IdeaBoxApp do
     assert last_response.ok?
   end
 
-  Minitest.after_run { File.delete('../db/ideabox-test') }
-
 end
