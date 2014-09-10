@@ -1,3 +1,5 @@
+ENV['RACK_ENV'] = 'test'
+
 require 'sinatra/base'
 require 'minitest/autorun'
 require 'minitest/pride'
@@ -16,17 +18,9 @@ describe IdeaBoxApp do
 
   it "has content that renders" do
     get '/'
-
     assert last_response.ok?
-
   end
 
-  it "has a header" do
-    get '/'
-    html = Nokogiri::HTML(last_response.body)
-
-    assert last_response.ok?
-    assert_equal "IdeaBox", html.css('h1').text
-  end
+  Minitest.after_run { File.delete('../db/ideabox-test') }
 
 end
