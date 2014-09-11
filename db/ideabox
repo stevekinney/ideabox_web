@@ -1,10 +1,9 @@
 ---
 ideas:
-- title: test
-  description: test123
 - title: another one
+  tags: '2'
   description: boats
-- title: Beers
+- title: Beer is great
   tags: colorado, avery
   description: when is it happy hour yo
 - title: hello

@@ -4,9 +4,11 @@ class IdeaBoxApp < Sinatra::Base
   set :method_override, true
   set :root, 'lib/app'
   set :public_folder, 'public/assets'
+  
+  IdeaBox = IdeaStore.new('db/ideabox')
 
   get '/' do
-    erb :index, locals: {ideas: IdeaStore.all.sort, idea: Idea.new(params)}
+    erb :index, locals: {ideas: IdeaBox.all.sort, idea: Idea.new(params)}
   end
 
   not_found do
@@ -14,36 +16,36 @@ class IdeaBoxApp < Sinatra::Base
   end
 
   post '/' do
-    IdeaStore.create(params[:idea])
+    IdeaBox.create(params[:idea])
     redirect '/'
   end
 
   delete '/:id' do |id|
-    IdeaStore.delete(id.to_i)
+    IdeaBox.delete(id.to_i)
     redirect '/'
   end
 
   get '/:id/edit' do |id|
-    idea = IdeaStore.find(id.to_i)
+    idea = IdeaBox.find(id.to_i)
     erb :edit, locals: {idea: idea}
   end
 
   put '/:id' do |id|
-    IdeaStore.update(id.to_i, params[:idea])
+    IdeaBox.update(id.to_i, params[:idea])
     redirect '/'
   end
 
   post '/:id/like' do |id|
-    idea = IdeaStore.find(id.to_i)
+    idea = IdeaBox.find(id.to_i)
     idea.like!
-    IdeaStore.update(id.to_i, idea.to_h)
+    IdeaBox.update(id.to_i, idea.to_h)
     redirect '/'
   end
 
   get '/:tag' do |tag|
-    ideas = IdeaStore.find_by_tag(tag)
+    ideas = IdeaBox.find_by_tag(tag)
     idea.tag
-    IdeaStore.update(id.to_i, idea.to_h)
+    IdeaBox.update(id.to_i, idea.to_h)
     redirect '/'
   end
 
