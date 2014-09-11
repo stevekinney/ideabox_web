@@ -57,5 +57,11 @@ class IdeaStore
   def find_by_tag(tag)
     all.find_all {|idea| idea.tags.include?(tag)}
   end
+  
+  def reset
+    database.transaction do
+      database['ideas'] = []
+    end
+  end
 
 end
